@@ -20,8 +20,6 @@ void main()
     char output[] = "";
 
     CutPaperIntoSquares(paper, output);
-    
-    //printf("%d %d", x, y);
 
 }
 
@@ -34,10 +32,14 @@ void CutPaperIntoSquares(int *paper, char *output)
         
         char dimension[] = "", squareSize[128];
         itoa(CutSquare(paper), squareSize ,10);
-        
+
+        strcat(dimension, squareSize);
+        strcat(dimension, "X");
+        strcat(dimension, squareSize);
+        strcat(dimension, "\n");       
         
 
-        printf("\n%s", squareSize);
+        printf("%s", dimension);
         //return dimension;
     }
 }
