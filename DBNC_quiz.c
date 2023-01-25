@@ -4,7 +4,8 @@
 
 
 int CutSquare(int *paper);
-void CutPaperIntoSquares(int *paper, char *output);
+int CutPaperIntoSquares(int *paper, int *output);
+void PrintResults(int *output, int outputSize);
 
 void main()
 {
@@ -17,31 +18,26 @@ void main()
     scanf("%d", &y);
 
     int paper[2] = {x,y}; // paper
-    char output[] = "";
+    int output[100] = {0}, outputSize;
 
-    CutPaperIntoSquares(paper, output);
+    outputSize = CutPaperIntoSquares(paper, output);
+
+    PrintResults(output, outputSize);
 
 }
 
-void CutPaperIntoSquares(int *paper, char *output)
+
+int CutPaperIntoSquares(int *paper, int *output)
 {
-    //int squareSize;
+    int count = 0;
     
     while(paper[0] > 0 && paper[1] > 0)
     {
-        
-        char dimension[] = "", squareSize[128];
-        itoa(CutSquare(paper), squareSize ,10);
-
-        strcat(dimension, squareSize);
-        strcat(dimension, "X");
-        strcat(dimension, squareSize);
-        strcat(dimension, "\n");       
-        
-
-        printf("%s", dimension);
-        //return dimension;
+        output[count] = CutSquare(paper);
+        count++;
     }
+
+    return count;
 }
 
 int CutSquare(int *paper) // Cuts the largest possible square out of the paper. Returns the edge length of that square.
@@ -55,6 +51,14 @@ int CutSquare(int *paper) // Cuts the largest possible square out of the paper. 
     {
         paper[1] -= paper[0];
         return paper[0];
+    }
+}
+
+void PrintResults(int *output, int outputSize)
+{
+    for(int i=0; i < outputSize; i++)
+    {
+        printf("%dX%d\n", output[i], output[i]);
     }
 }
 
