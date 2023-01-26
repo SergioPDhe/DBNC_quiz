@@ -23,7 +23,7 @@ void main()
     scanf("%d", &y);
 
     int paper[2] = {x,y};   // paper
-    int output[100] = {0};  // output  
+    int output[1024] = {0};  // output  (limit of 1024 squares)
     int outputSize;         // size of output (number of squares)
 
     outputSize = CutPaperIntoSquares(paper, output);
